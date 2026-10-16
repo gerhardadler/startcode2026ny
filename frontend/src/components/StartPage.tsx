@@ -7,6 +7,7 @@ import {
   totalPoints,
   verdict,
 } from "../quiz";
+import { appUrl } from "../base";
 import { navigate } from "../router";
 import { useApp } from "../state";
 import BottomNav from "./BottomNav";
@@ -50,7 +51,7 @@ export default function StartPage() {
       >
         <img
           className="start-photo"
-          src="/assets/images/bakklandet.jpg"
+          src={appUrl("/assets/images/bakklandet.jpg")}
           alt=""
         />
         <div className="start-shade" />

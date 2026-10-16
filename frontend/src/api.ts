@@ -1,4 +1,6 @@
-export type StoryImage = { src: string; alt: string | null; caption: string | null; credit: string | null };
+import { appUrl, mediaUrl } from "./base";
+
+export type StoryImage ={ src: string; alt: string | null; caption: string | null; credit: string | null };
 
 /** Adressa's own «Kort oppsummert», unchanged, with its AI and editorial disclosure. */
 export type Summary = {
@@ -82,8 +84,8 @@ export type GuessResult = {
 };
 
 
-async function request<T>(url: string, init: RequestInit | undefined, failure: string): Promise<T> {
-  const res = await fetch(url, init);
+async function request<T>(path: string, init: RequestInit | undefined, failure: string): Promise<T> {
+  const res = await fetch(appUrl(path), init);
   if (!res.ok) throw new Error(`${failure} (${res.status})`);
   return res.json();
 }
@@ -93,7 +95,8 @@ export async function fetchStories(): Promise<Stories> {
   // An older backend has no videos or feed order: then the feed is the stories.
   return {
     ...data,
-    videos: data.videos ?? [],
+    stories: data.stories.map((s) => (s.image ? { ...s, image: { ...s.image, src: mediaUrl(s.image.src) } } : s)),
+    videos: (data.videos ?? []).map((v) => ({ ...v, src: mediaUrl(v.src), poster: mediaUrl(v.poster) })),
     feed: data.feed ?? data.stories.map((s) => ({ type: "article" as const, id: s.id })),
   };
 }

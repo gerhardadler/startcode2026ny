@@ -1,8 +1,10 @@
 import { AnchorHTMLAttributes, MouseEvent, useSyncExternalStore } from "react";
 import { flushSync } from "react-dom";
+import { appPath, appUrl } from "./base";
 
 // A small history-API router. Each entry remembers its scroll position, so going
-// back to the feed lands where the reader left it.
+// back to the feed lands where the reader left it. Paths are the app's own ("/nyheter");
+// the address bar has BASE in front of them (see base.ts).
 
 type Location = { pathname: string; search: string; hash: string };
 type ScrollTarget = { y: number } | { hash: string };
@@ -13,7 +15,7 @@ let current = read();
 let scrollTarget: ScrollTarget | null = location.hash ? { hash: location.hash.slice(1) } : null;
 
 function read(): Location {
-  return { pathname: location.pathname, search: location.search, hash: location.hash };
+  return { pathname: appPath(location.pathname), search: location.search, hash: location.hash };
 }
 
 function emit() {
@@ -48,9 +50,9 @@ window.addEventListener("popstate", () => {
 
 export function navigate(to: string) {
   const url = new URL(to, location.origin);
-  const from = location.pathname + location.search;
+  const from = appPath(location.pathname) + location.search;
   history.replaceState({ ...history.state, y: scrollY }, "");
-  history.pushState({ y: 0, inApp: true, from } satisfies EntryState, "", url.pathname + url.search + url.hash);
+  history.pushState({ y: 0, inApp: true, from } satisfies EntryState, "", appUrl(url.pathname) + url.search + url.hash);
   scrollTarget = url.hash ? { hash: url.hash.slice(1) } : { y: 0 };
   transition("forward", emit);
 }
@@ -58,7 +60,7 @@ export function navigate(to: string) {
 /** Swap the current page for another one, without a new history entry or a slide. */
 export function redirect(to: string) {
   const url = new URL(to, location.origin);
-  history.replaceState({ ...(history.state as EntryState | null), y: 0 }, "", url.pathname + url.search + url.hash);
+  history.replaceState({ ...(history.state as EntryState | null), y: 0 }, "", appUrl(url.pathname) + url.search + url.hash);
   scrollTarget = url.hash ? { hash: url.hash.slice(1) } : { y: 0 };
   emit();
 }
@@ -99,5 +101,5 @@ export function Link({ to, onClick, ...rest }: LinkProps) {
     e.preventDefault();
     navigate(to);
   }
-  return <a href={to} onClick={handleClick} {...rest} />;
+  return <a href={appUrl(to)} onClick={handleClick} {...rest} />;
 }

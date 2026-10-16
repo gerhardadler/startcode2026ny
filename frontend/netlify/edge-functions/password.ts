@@ -33,8 +33,8 @@ function same(a: string, b: string): boolean {
 }
 
 // Back to where the reader was going, but only on this site.
-function target(value: unknown): string {
-  return typeof value === "string" && value.startsWith("/") && !value.startsWith("//") ? value : "/";
+function target(value: unknown, base: string): string {
+  return typeof value === "string" && value.startsWith("/") && !value.startsWith("//") ? value : `${base}/`;
 }
 
 export default async (request: Request, context: Context) => {
@@ -43,23 +43,26 @@ export default async (request: Request, context: Context) => {
   const token = await sign(password);
   if (same(context.cookies.get(COOKIE) ?? "", token)) return context.next();
 
+  // "" on the app's own site. galak.se proxies /oppdatert/* here without the prefix, so that copy
+  // has APP_BASE=/oppdatert and puts it back on the addresses the browser gets (see src/base.ts).
+  const base = (Netlify.env.get("APP_BASE") ?? "").replace(/\/$/, "");
   const url = new URL(request.url);
   if (url.pathname === LOGIN && request.method === "POST") {
     const form = await request.formData();
-    const next = target(form.get("neste"));
+    const next = target(form.get("neste"), base);
     const given = form.get("passord");
     if (typeof given === "string" && same(await sign(given), token)) {
       return new Response(null, {
         status: 303,
         headers: {
           Location: next,
-          "Set-Cookie": `${COOKIE}=${token}; Path=/; Max-Age=${DAYS * 86400}; HttpOnly; Secure; SameSite=Lax`,
+          "Set-Cookie": `${COOKIE}=${token}; Path=${base || "/"}; Max-Age=${DAYS * 86400}; HttpOnly; Secure; SameSite=Lax`,
         },
       });
     }
-    return page(next, true);
+    return page(next, true, base);
   }
-  return page(url.pathname === LOGIN ? "/" : url.pathname + url.search, false);
+  return page(base + (url.pathname === LOGIN ? "/" : url.pathname + url.search), false, base);
 };
 
 export const config: Config = {
@@ -72,7 +75,7 @@ const escape = (text: string) =>
   text.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 
 // Same look as the app: the dark theme tokens and Adressa's fonts, with no script of its own.
-function page(next: string, wrong: boolean): Response {
+function page(next: string, wrong: boolean, base: string): Response {
   const html = `<!doctype html>
 <html lang="nb">
 <head>
@@ -81,12 +84,12 @@ function page(next: string, wrong: boolean): Response {
 <meta name="theme-color" content="#101010">
 <meta name="robots" content="noindex">
 <title>Oppdatert</title>
-<link rel="icon" href="/assets/brand/opplyst-icon.svg" type="image/svg+xml">
+<link rel="icon" href="${base}/assets/brand/opplyst-icon.svg" type="image/svg+xml">
 <style>
-@font-face { font-family: Acta; src: url("/assets/fonts/acta_800.woff2") format("woff2"); font-weight: 800; font-display: swap; }
-@font-face { font-family: Stag; src: url("/assets/fonts/Stag-Semibold.otf") format("opentype"); font-weight: 600; font-display: swap; }
-@font-face { font-family: Roboto; src: url("/assets/fonts/Roboto-Regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
-@font-face { font-family: Roboto; src: url("/assets/fonts/Roboto-Bold.ttf") format("truetype"); font-weight: 700; font-display: swap; }
+@font-face { font-family: Acta; src: url("${base}/assets/fonts/acta_800.woff2") format("woff2"); font-weight: 800; font-display: swap; }
+@font-face { font-family: Stag; src: url("${base}/assets/fonts/Stag-Semibold.otf") format("opentype"); font-weight: 600; font-display: swap; }
+@font-face { font-family: Roboto; src: url("${base}/assets/fonts/Roboto-Regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: Roboto; src: url("${base}/assets/fonts/Roboto-Bold.ttf") format("truetype"); font-weight: 700; font-display: swap; }
 :root { color-scheme: dark; }
 * { box-sizing: border-box; }
 html, body { margin: 0; background: #101010; color: #F6F6F6; }
@@ -109,7 +112,7 @@ button:hover { background: #62C1EB; }
 <body>
 <main>
 <div class="brand"><span class="brand-name">Oppdatert</span><span class="brand-from">fra Adressa</span></div>
-<form method="post" action="${LOGIN}">
+<form method="post" action="${base}${LOGIN}">
 <h1>Skriv inn passordet</h1>
 <p>Demoen av Oppdatert viser saker fra Adresseavisen og er bare for dem som har fått passordet.</p>
 <input type="hidden" name="neste" value="${escape(next)}">

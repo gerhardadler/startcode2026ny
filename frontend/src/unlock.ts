@@ -1,4 +1,5 @@
 import type { Stories, Story } from "./api";
+import { appUrl } from "./base";
 
 type PrivateStory = Pick<Story, "lead" | "authors" | "modifiedAt" | "summary" | "body" | "opplystSummary"> &
   Partial<Pick<Story, "image">>;
@@ -12,7 +13,7 @@ type PrivateStory = Pick<Story, "lead" | "authors" | "modifiedAt" | "summary" | 
 export async function withFullStories(data: Stories): Promise<Stories> {
   if (data.stories.every((s) => s.imported)) return data;
   try {
-    const res = await fetch("/private/stories.json", { cache: "no-cache" });
+    const res = await fetch(appUrl("/private/stories.json"), { cache: "no-cache" });
     if (!res.ok) return data;
     const full = (await res.json()) as { importedAt: string | null; stories: Record<string, PrivateStory> };
     return {
@@ -25,7 +26,7 @@ export async function withFullStories(data: Stories): Promise<Stories> {
           ...s,
           ...extra,
           lead: extra.lead ?? s.lead,
-          image: extra.image ?? s.image,
+          image: extra.image ? { ...extra.image, src: appUrl(extra.image.src) } : s.image,
           opplystSummary: extra.opplystSummary ?? s.opplystSummary ?? null,
           imported: true,
         };
