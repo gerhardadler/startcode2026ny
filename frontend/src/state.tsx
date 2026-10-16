@@ -22,7 +22,7 @@ type AppState = {
   storiesById: Map<string, Story>;
   videos: Video[];
   videosById: Map<string, Video>;
-  /** The one feed of stories and videos, in the backend's stable order. */
+  /** The one feed of stories and videos, in the backend's stable order after api.ts's FEED_FIRST. */
   feed: FeedEntry[];
   /** When the local Adressa import last succeeded, or null when this machine has none. */
   importedAt: string | null;

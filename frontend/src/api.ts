@@ -90,14 +90,20 @@ async function request<T>(path: string, init: RequestInit | undefined, failure: 
   return res.json();
 }
 
+// Stories that open the feed, in this order, ahead of the backend's newest first. Chosen by hand for
+// the demo on 17 October («Må ta eksamen med penn og papir»); ids not in this week's stories are skipped.
+const FEED_FIRST = ["adressa-b85jlv"];
+
 export async function fetchStories(): Promise<Stories> {
   const data = await request<Stories>("/api/stories", undefined, "Vi kunne ikke hente sakene");
   // An older backend has no videos or feed order: then the feed is the stories.
+  const feed = data.feed ?? data.stories.map((s) => ({ type: "article" as const, id: s.id }));
+  const first = FEED_FIRST.flatMap((id) => feed.filter((e) => e.type === "article" && e.id === id));
   return {
     ...data,
     stories: data.stories.map((s) => (s.image ? { ...s, image: { ...s.image, src: mediaUrl(s.image.src) } } : s)),
     videos: (data.videos ?? []).map((v) => ({ ...v, src: mediaUrl(v.src), poster: mediaUrl(v.poster) })),
-    feed: data.feed ?? data.stories.map((s) => ({ type: "article" as const, id: s.id })),
+    feed: [...first, ...feed.filter((e) => !first.includes(e))],
   };
 }
 
