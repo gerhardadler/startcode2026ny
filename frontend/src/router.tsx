@@ -1,6 +1,7 @@
 import { AnchorHTMLAttributes, MouseEvent, useSyncExternalStore } from "react";
 import { flushSync } from "react-dom";
 import { appPath, appUrl } from "./base";
+import { inPhone } from "./frame";
 
 // A small history-API router. Each entry remembers its scroll position, so going
 // back to the feed lands where the reader left it. Paths are the app's own ("/nyheter");
@@ -20,6 +21,8 @@ function read(): Location {
 
 function emit() {
   current = read();
+  // Inside the phone on a computer (see frame.ts) the address bar is the page's around it.
+  if (inPhone) parent.history.replaceState(parent.history.state, "", location.href);
   listeners.forEach((listener) => listener());
 }
 

@@ -2075,3 +2075,123 @@ html[data-nav="back"]::view-transition-new(root) {
     animation-duration: 0.38s;
     animation-timing-function: cubic-bezier(0.22, 0.8, 0.24, 1);
 }
+
+/* On a computer: the app inside a drawn iPhone 15 (components/PhoneFrame.tsx, frame.ts). Plain
+   borders and shadows that never animate, so the phone is painted once and costs nothing while the
+   app scrolls inside it. */
+.phone-stage {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse 50% 70% at 50% 50%, #15232c, var(--canvas));
+}
+.phone {
+    position: relative;
+    flex: none;
+    padding: 14px;
+    border-radius: 69px;
+    background: #000;
+    box-shadow:
+        0 0 0 3px #3a3a3c,
+        0 0 0 4px #1c1c1e,
+        0 40px 90px -20px rgb(0 0 0 / 0.8);
+}
+.phone-button {
+    position: absolute;
+    width: 4px;
+    background: #3a3a3c;
+}
+.phone-button.action,
+.phone-button.volume-up,
+.phone-button.volume-down {
+    left: -7px;
+    border-radius: 2px 0 0 2px;
+}
+.phone-button.action {
+    top: 150px;
+    height: 32px;
+}
+.phone-button.volume-up {
+    top: 210px;
+    height: 60px;
+}
+.phone-button.volume-down {
+    top: 284px;
+    height: 60px;
+}
+.phone-button.side {
+    right: -7px;
+    top: 240px;
+    height: 96px;
+    border-radius: 0 2px 2px 0;
+}
+.phone-screen {
+    position: relative;
+}
+.phone-screen iframe {
+    display: block;
+    border: 0;
+    border-radius: 55px;
+    background: var(--canvas);
+}
+.phone-status {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 59px;
+    display: grid;
+    grid-template-columns: 1fr 125px 1fr;
+    align-items: center;
+    color: #fff;
+    pointer-events: none;
+}
+.phone-time {
+    justify-self: center;
+    padding-left: 12px;
+    font: 600 17px/1 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+    letter-spacing: -0.01em;
+    font-variant-numeric: tabular-nums;
+}
+.phone-island {
+    height: 37px;
+    border-radius: 19px;
+    background: #000;
+}
+.phone-icons {
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-right: 10px;
+}
+.phone-icons svg {
+    display: block;
+    fill: currentColor;
+}
+.phone-home {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    width: 134px;
+    height: 5px;
+    margin-left: -67px;
+    border-radius: 3px;
+    background: #fff;
+    pointer-events: none;
+}
+/* The app inside it: room for the island, the status bar and the home indicator, as on a real
+   iPhone, and no desktop scrollbars. */
+html.in-phone {
+    --safe-t: 59px;
+    --safe-b: 34px;
+}
+html.in-phone,
+html.in-phone * {
+    scrollbar-width: none;
+}
+html.in-phone::-webkit-scrollbar,
+html.in-phone ::-webkit-scrollbar {
+    display: none;
+}
