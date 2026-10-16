@@ -60,7 +60,7 @@ from app.stories import IMAGE_FILE, SOURCE, cache_dir
 
 REPO = Path(__file__).resolve().parents[3]
 MAX_ARTICLES = 12
-FEED_WIDTH = 1600  # the feed never needs a wider photo
+FEED_WIDTH = 2000  # a phone shows the photo full screen, so the page's 1000 px copy is too soft
 USER_AGENT = "Opplyst/0.1 (personal local RSS reader)"
 
 LOGIN_HELP = """Logg inn på nytt i scraperens Adressa-profil, fra rotmappen i repoet:
@@ -119,12 +119,13 @@ def _number(value: str | None) -> float:
 
 
 def feed_sized_image_url(url: str) -> str:
-    """The CDN renders each size on request. Very large originals (3200 px) can take long enough to
-    time out the first time, and the feed never needs more than 1600 px."""
+    """The CDN renders each size on request, so ask for FEED_WIDTH instead of the page's own size
+    (1000 px, far too soft on a full-screen phone card). It never goes beyond the original. Very large
+    originals (3200 px) can take long enough to time out the first time, hence no more than this."""
     parts = urlsplit(url)
     query = parse_qsl(parts.query, keep_blank_values=True)
     width, height = _number(dict(query).get("w")), _number(dict(query).get("h"))
-    if width <= FEED_WIDTH:
+    if not width or width == FEED_WIDTH:
         return url
     sizes = {"w": str(FEED_WIDTH)}
     if height:
@@ -224,9 +225,10 @@ def import_one(browser: Browser, candidate: dict, imported_at: str, image_dir: P
             warnings.append(saved["error"])
         else:
             caption, credit = split_caption(page_image.get("caption"))
-            # Large originals are fetched 1600 px wide (see feed_sized_image_url); so is the size.
+            # Photos are fetched FEED_WIDTH px wide (see feed_sized_image_url); so is the size,
+            # unless the original is smaller.
             width, height = page_image.get("width"), page_image.get("height")
-            scale = FEED_WIDTH / width if width and width > FEED_WIDTH else 1
+            scale = FEED_WIDTH / width if width else 1
             image = {
                 "src": f"/api/media/adressa/{saved['file']}",
                 "file": saved["file"],

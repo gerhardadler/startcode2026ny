@@ -147,13 +147,19 @@ def test_image_bytes_are_recognised_by_their_signature_not_their_name():
     assert image_type(b"<html>not an image</html>") is None
 
 
-def test_large_photos_are_fetched_at_feed_width_and_only_from_adressas_image_service(tmp_path):
-    url = "https://vcdn.polarismedia.no/abc?fit=crop&h=2000&q=80&w=3200"
-    assert run.feed_sized_image_url(url) == (
-        "https://vcdn.polarismedia.no/abc?fit=crop&h=1000&q=80&w=1600"
+def test_photos_are_fetched_at_feed_width_and_only_from_adressas_image_service(tmp_path):
+    large = "https://vcdn.polarismedia.no/abc?fit=crop&h=2000&q=80&w=3200"
+    assert run.feed_sized_image_url(large) == (
+        "https://vcdn.polarismedia.no/abc?fit=crop&h=1250&q=80&w=2000"
     )
-    small = "https://vcdn.polarismedia.no/abc?w=1200&h=800"
-    assert run.feed_sized_image_url(small) == small
+    # The page's own 1000 px copy is too soft for a full-screen phone card, so small ones grow too.
+    small = "https://vcdn.polarismedia.no/abc?fit=crop&h=700&q=80&w=1000"
+    assert run.feed_sized_image_url(small) == (
+        "https://vcdn.polarismedia.no/abc?fit=crop&h=1400&q=80&w=2000"
+    )
+    # Without a width there is nothing to scale from.
+    bare = "https://vcdn.polarismedia.no/abc?q=80"
+    assert run.feed_sized_image_url(bare) == bare
     assert run.download_image("https://example.com/a.jpg", "adressa-a1", tmp_path) == {
         "error": "IMAGE_HOST_NOT_ALLOWED"
     }
