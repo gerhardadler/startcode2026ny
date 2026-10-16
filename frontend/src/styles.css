@@ -624,30 +624,13 @@ summary::-webkit-details-marker {
     color: var(--action);
 }
 
-/* The clip sits above its controls, never under them, so its own subtitles always have room. */
+/* The clip fills the whole card, like the photos; its controls sit on the dark shade at the bottom. */
 .card-video {
-    display: grid;
-    grid-template-rows: minmax(0, 1fr) auto;
     height: 100%;
-    padding-top: 0;
     background: #000;
 }
 .card-video .card-media {
-    position: relative;
-    inset: auto;
-    grid-row: 1;
-    min-height: 0;
-    z-index: 0;
-    object-fit: contain;
     background: #000;
-}
-.card-video .video-copy {
-    grid-row: 2;
-    background: #000;
-    padding-top: 12px;
-}
-.video-copy:before {
-    display: none;
 }
 .video-shade {
     background: linear-gradient(180deg, #0008 0, #0000 12%);
@@ -662,7 +645,6 @@ summary::-webkit-details-marker {
     inset: 0;
     z-index: 0;
     cursor: pointer;
-    grid-row: 1;
 }
 .video-copy {
     padding-bottom: 12px;
