@@ -1,4 +1,5 @@
-/* Adressa design tokens (hackathon kit 1.1.0), copied from the feed prototype. */
+/* Adressa design tokens (hackathon kit 1.1.0), copied from the feed prototype. Font roles come from
+   Adresseavisen's Frontify manual; font rights: public/assets/licenses/. */
 :root {
   --color-brand: #005379;
   --color-brand-hover: #003E5B;
@@ -15,8 +16,9 @@
   --color-culture: #C3002F;
   --color-focus: #005379;
   --color-on-brand: #FFFFFF;
-  --font-editorial: 'Bitter', Georgia, serif;
-  --font-ui: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-editorial: 'Acta', Georgia, serif;
+  --font-ui: 'Roboto', system-ui, sans-serif;
+  --font-vignette: 'Stag', Georgia, serif;
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;

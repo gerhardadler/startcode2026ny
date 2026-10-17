@@ -1,0 +1,257 @@
+{
+  "checkedOn": "2026-10-16",
+  "manual": "https://company-90935.frontify.com/d/KBkyxXYVDv4j/style-guide#/adresseavisen/adressaskriftene",
+  "darkTheme": "Profile colors and logo/font rules come from Frontify. Dark UI roles and additional surface/status colors are project adaptations.",
+  "fontFiles": [
+    {
+      "file": "Roboto-Bold.ttf",
+      "bytes": 162464,
+      "sha256": "ef2ab0e402d5cb9de893e263a2c44e57f57fec3974b0d981bfe84dec3dae83a1",
+      "family": "Roboto",
+      "subfamily": "Bold",
+      "weightClass": 700,
+      "fsType": 0,
+      "source": {
+        "kind": "official-manual-attachment",
+        "pageURL": "https://company-90935.frontify.com/d/KBkyxXYVDv4j/style-guide#/adresseavisen/adressaskriftene",
+        "attachmentId": 176940
+      },
+      "licenseEvidence": {
+        "status": "Apache-2.0 identified in font metadata",
+        "metadataNameId13": "Licensed under the Apache License, Version 2.0",
+        "licenseURL": "http://www.apache.org/licenses/LICENSE-2.0"
+      }
+    },
+    {
+      "file": "Roboto-Regular.ttf",
+      "bytes": 162876,
+      "sha256": "f0e5a21bf5c95e4c1bce2be98a3656ebcc6d42a21f41c4e3ebf69dd815702e54",
+      "family": "Roboto",
+      "subfamily": "Regular",
+      "weightClass": 400,
+      "fsType": 0,
+      "source": {
+        "kind": "official-manual-attachment",
+        "pageURL": "https://company-90935.frontify.com/d/KBkyxXYVDv4j/style-guide#/adresseavisen/adressaskriftene",
+        "attachmentId": 176939
+      },
+      "licenseEvidence": {
+        "status": "Apache-2.0 identified in font metadata",
+        "metadataNameId13": "Licensed under the Apache License, Version 2.0",
+        "licenseURL": "http://www.apache.org/licenses/LICENSE-2.0"
+      }
+    },
+    {
+      "file": "Stag-Semibold.otf",
+      "bytes": 123932,
+      "sha256": "1776fff5fd56e4aed094f62926a1cb913b0db09c4dc48d440a5624ddbaaefd28",
+      "family": "Stag",
+      "subfamily": "Semibold",
+      "weightClass": 600,
+      "fsType": 0,
+      "source": {
+        "kind": "official-manual-attachment",
+        "pageURL": "https://company-90935.frontify.com/d/KBkyxXYVDv4j/style-guide#/adresseavisen/adressaskriftene",
+        "attachmentId": 176936
+      },
+      "licenseEvidence": {
+        "status": "Proprietary Commercial Type/Schwartzco font",
+        "metadataNameId13": "Full Schwartzco Font Software End User License Agreement present",
+        "licenseURL": "http://commercialtype.com/eula",
+        "notes": "Do not infer redistribution or software embedding rights from public availability or fsType=0. Embedded EULA restricts format conversion and software embedding. No conversion performed."
+      }
+    },
+    {
+      "file": "acta_400.woff2",
+      "bytes": 40176,
+      "sha256": "2b442998cb080fad6cd0147e9c5033998d7efca23e04cab4faf9a07a9d3cb51b",
+      "family": "Acta",
+      "subfamily": "Regular",
+      "weightClass": 400,
+      "fsType": 0,
+      "source": {
+        "kind": "public-site-linked-webfont",
+        "sourceCSS": "https://www.adressa.no/css/snowflake.adressa.2f7e1ff8a86e7c48a8e6.css",
+        "url": "https://static.polarismedia.no/skins/prod/publication/adressa/coco/fonts/acta/acta_400.woff2"
+      },
+      "licenseEvidence": {
+        "status": "Proprietary DSType font; no redistribution license identified in font file",
+        "copyright": "Copyright © 2012 by Dino dos Santos. All rights reserved.",
+        "notes": "No nameID13 license text or nameID14 license URL found. No license inferred from fsType=0 or public CSS linking."
+      }
+    },
+    {
+      "file": "acta_400_italic.woff2",
+      "bytes": 41940,
+      "sha256": "5f824e050714c0432000753ed419c94a0d56a8f9ecb73ba9a5627ee578e9fbd3",
+      "family": "Acta Medium",
+      "subfamily": "Italic",
+      "weightClass": 400,
+      "fsType": 0,
+      "source": {
+        "kind": "public-site-linked-webfont",
+        "sourceCSS": "https://www.adressa.no/css/snowflake.adressa.2f7e1ff8a86e7c48a8e6.css",
+        "url": "https://static.polarismedia.no/skins/prod/publication/adressa/coco/fonts/acta/acta_400_italic.woff2"
+      },
+      "licenseEvidence": {
+        "status": "Proprietary DSType font; no redistribution license identified in font file",
+        "copyright": "Copyright © 2012 by Dino dos Santos. All rights reserved.",
+        "notes": "No nameID13 license text or nameID14 license URL found. No license inferred from fsType=0 or public CSS linking."
+      }
+    },
+    {
+      "file": "acta_700_italic.woff2",
+      "bytes": 41384,
+      "sha256": "2ce9081bdb56f8559a78b9783e1fdab44dd0e8133473bdd73dcd8db675a3f765",
+      "family": "Acta Bold",
+      "subfamily": "Italic",
+      "weightClass": 700,
+      "fsType": 0,
+      "source": {
+        "kind": "public-site-linked-webfont",
+        "sourceCSS": "https://www.adressa.no/css/snowflake.adressa.2f7e1ff8a86e7c48a8e6.css",
+        "url": "https://static.polarismedia.no/skins/prod/publication/adressa/coco/fonts/acta/acta_700_italic.woff2"
+      },
+      "licenseEvidence": {
+        "status": "Proprietary DSType font; no redistribution license identified in font file",
+        "copyright": "Copyright © 2012 by Dino dos Santos. All rights reserved.",
+        "notes": "No nameID13 license text or nameID14 license URL found. No license inferred from fsType=0 or public CSS linking."
+      }
+    },
+    {
+      "file": "acta_800.woff2",
+      "bytes": 39500,
+      "sha256": "6b323ec6ef337ff69d9f6f276c9d95da4c03d0a35495d24f0a6e0a01fed59655",
+      "family": "Acta ExtraBold",
+      "subfamily": "Regular",
+      "weightClass": 800,
+      "fsType": 0,
+      "source": {
+        "kind": "public-site-linked-webfont",
+        "sourceCSS": "https://www.adressa.no/css/snowflake.adressa.2f7e1ff8a86e7c48a8e6.css",
+        "url": "https://static.polarismedia.no/skins/prod/publication/adressa/coco/fonts/acta/acta_800.woff2"
+      },
+      "licenseEvidence": {
+        "status": "Proprietary DSType font; no redistribution license identified in font file",
+        "copyright": "Copyright © 2012 by Dino dos Santos. All rights reserved.",
+        "notes": "No nameID13 license text or nameID14 license URL found. No license inferred from fsType=0 or public CSS linking."
+      }
+    }
+  ],
+  "distributionNote": "Original files packaged at user request. Acta/Stag retain proprietary rights; this archive does not issue a new license.",
+  "assets": [
+    {
+      "path": "CLAUDE.md",
+      "bytes": 2863,
+      "sha256": "637c65e60bb3469286ca4465c81d220ab48409e03fba57bbd125f8a3d9cc67b0"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2694,
+      "sha256": "cfcb3892f23c9f9df41670b002fe0e33a365a2be7052b3b174f95684340f0b38"
+    },
+    {
+      "path": "brand/Adressasirkelen.png",
+      "bytes": 6661,
+      "sha256": "a3d0d6ee0622b730f3b98611261b0d50983421ac493bfac5da1c3050cbef179c"
+    },
+    {
+      "path": "brand/adressa-white.svg",
+      "bytes": 27733,
+      "sha256": "98891d87f71a37d4ee4aad6c11b736e37184e907b3a4ab3345f74552eabdfd97"
+    },
+    {
+      "path": "dark-theme.css",
+      "bytes": 3443,
+      "sha256": "eb5490980a7574d58007265718183aa662b878831d78de40943d551d8e50175b"
+    },
+    {
+      "path": "fonts/Roboto-Bold.ttf",
+      "bytes": 162464,
+      "sha256": "ef2ab0e402d5cb9de893e263a2c44e57f57fec3974b0d981bfe84dec3dae83a1"
+    },
+    {
+      "path": "fonts/Roboto-Regular.ttf",
+      "bytes": 162876,
+      "sha256": "f0e5a21bf5c95e4c1bce2be98a3656ebcc6d42a21f41c4e3ebf69dd815702e54"
+    },
+    {
+      "path": "fonts/Stag-Semibold.otf",
+      "bytes": 123932,
+      "sha256": "1776fff5fd56e4aed094f62926a1cb913b0db09c4dc48d440a5624ddbaaefd28"
+    },
+    {
+      "path": "fonts/acta_400.woff2",
+      "bytes": 40176,
+      "sha256": "2b442998cb080fad6cd0147e9c5033998d7efca23e04cab4faf9a07a9d3cb51b"
+    },
+    {
+      "path": "fonts/acta_400_italic.woff2",
+      "bytes": 41940,
+      "sha256": "5f824e050714c0432000753ed419c94a0d56a8f9ecb73ba9a5627ee578e9fbd3"
+    },
+    {
+      "path": "fonts/acta_700_italic.woff2",
+      "bytes": 41384,
+      "sha256": "2ce9081bdb56f8559a78b9783e1fdab44dd0e8133473bdd73dcd8db675a3f765"
+    },
+    {
+      "path": "fonts/acta_800.woff2",
+      "bytes": 39500,
+      "sha256": "6b323ec6ef337ff69d9f6f276c9d95da4c03d0a35495d24f0a6e0a01fed59655"
+    },
+    {
+      "path": "fonts/fonts.css",
+      "bytes": 1163,
+      "sha256": "6b03ffc7380072706969583212cf69243d54cc44c41925615a2ffbd186a3c390"
+    },
+    {
+      "path": "licenses/BRAND-MARK-NOTICE.md",
+      "bytes": 651,
+      "sha256": "e932f3e7b15651306c0721837c26a43d8b17c4c3f2fb6fdc824039c8378c62fe"
+    },
+    {
+      "path": "licenses/PROPRIETARY-FONTS-NOTICE.md",
+      "bytes": 1009,
+      "sha256": "9681f0f368b4f6e6f18ad6c37da092c834a6871dd90d787b2b6c42df7a740d80"
+    },
+    {
+      "path": "licenses/Roboto-Apache-2.0.txt",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "licenses/Roboto-COPYRIGHT.txt",
+      "bytes": 252,
+      "sha256": "76ef2aa17017ea7b7c88aded6854cf520769012841a8eacf6ed9693ff8225562"
+    },
+    {
+      "path": "licenses/Stag-embedded-EULA.txt",
+      "bytes": 18872,
+      "sha256": "0aab55f9436db713d4c3cb7016d46a95be77b0684a63d20b61f18f30f6bd0896"
+    },
+    {
+      "path": "preview.html",
+      "bytes": 5164,
+      "sha256": "a2c30f15f5c3f7f8d3d42e33965244d926a74a287bb2835ce6b438de445a6ce6"
+    },
+    {
+      "path": "preview.jpg",
+      "bytes": 141133,
+      "sha256": "37974cc0a451893ac0256491b081b2d7aeb21923475025010213bad7b23134cd"
+    },
+    {
+      "path": "tokens.json",
+      "bytes": 4505,
+      "sha256": "2427dac53b77c533f78351aa446f5b1a573c5eceaede57d87ece3762d63b8ea9"
+    }
+  ],
+  "verification": {
+    "fontsUnchanged": true,
+    "allSevenFontsParsed": true,
+    "norwegianGlyphsVerified": "æøåÆØÅ",
+    "cssFileReferencesExist": true,
+    "previewCheckedInBrowser": true,
+    "fontLicenseGrant": "No new font or trademark license is granted by this archive."
+  }
+}
