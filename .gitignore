@@ -28,6 +28,10 @@ frontend/.reader*
 frontend/public/private/
 # Adressa's videos for the hosted frontend, copied in by `npm run videos`
 frontend/public/media/
+# Acta and Stag have no open license (see public/assets/licenses/), so they stay out of this public
+# repo; the hosted frontend gets them from the local build. Roboto (Apache 2.0) is in git.
+frontend/public/assets/fonts/acta_*.woff2
+frontend/public/assets/fonts/Stag-*.otf
 
 # Xcode
 ios/build/

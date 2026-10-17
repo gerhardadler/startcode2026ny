@@ -1,16 +1,55 @@
 /* Opplyst fra Adressa. Dark mode from the (unofficial) Adressa hackathon kit v2: black and grey
-   surfaces, white text, light blue actions, Bitter for headlines and Inter for everything else.
+   surfaces, white text, light blue actions. Acta for headlines and article text, Stag for vignettes,
+   Roboto for everything else.
    Real photos and video carry the screens; text sits on a neutral dark shade, never on glass. */
+/* Adressa's original font files, unchanged; only the weights below exist, so nothing is synthesised. */
 @font-face {
-    font-family: Inter;
-    src: url("/assets/fonts/inter-latin-wght-normal.woff2") format("woff2");
-    font-weight: 100 900;
+    font-family: Acta;
+    src: url("/assets/fonts/acta_400.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
     font-display: swap;
 }
 @font-face {
-    font-family: Bitter;
-    src: url("/assets/fonts/bitter-latin-wght-normal.woff2") format("woff2");
-    font-weight: 100 900;
+    font-family: Acta;
+    src: url("/assets/fonts/acta_800.woff2") format("woff2");
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: Acta;
+    src: url("/assets/fonts/acta_400_italic.woff2") format("woff2");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: Acta;
+    src: url("/assets/fonts/acta_700_italic.woff2") format("woff2");
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: Stag;
+    src: url("/assets/fonts/Stag-Semibold.otf") format("opentype");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: Roboto;
+    src: url("/assets/fonts/Roboto-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: Roboto;
+    src: url("/assets/fonts/Roboto-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
     font-display: swap;
 }
 :root {
@@ -28,6 +67,7 @@
     --field: #141414;
     --on-photo-muted: #c8c8c8;
     --head: var(--font-editorial);
+    --vignette: var(--font-vignette);
     --ui: var(--font-ui);
     --col: 520px;
     --read: 720px;
@@ -46,6 +86,7 @@ body {
     background: var(--canvas);
     color: var(--text);
     font: 400 16px/1.5 var(--ui);
+    font-synthesis: none;
     -webkit-font-smoothing: antialiased;
     overflow-x: clip;
     overscroll-behavior-y: none;
@@ -149,11 +190,11 @@ summary::-webkit-details-marker {
     line-height: 1;
 }
 .brand-name {
-    font: 800 30px/0.95 var(--ui);
-    letter-spacing: -0.035em;
+    font: 600 30px/0.95 var(--vignette);
+    letter-spacing: -0.01em;
 }
 .brand-from {
-    font: 650 14px/1.2 var(--ui);
+    font: 700 14px/1.2 var(--ui);
     margin-top: 4px;
     letter-spacing: -0.005em;
 }
@@ -163,11 +204,10 @@ summary::-webkit-details-marker {
     align-items: flex-start;
     padding: 2px 0;
 }
+/* Vignette: Adressa sets section and channel names in Stag. */
 .kicker {
     display: block;
-    font: 650 13px/1.35 var(--ui);
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
+    font: 600 15px/1.3 var(--vignette);
     color: var(--action);
     margin: 0 0 8px;
 }
@@ -180,7 +220,7 @@ summary::-webkit-details-marker {
     padding: 10px 20px;
     border-radius: 8px;
     border: 1.5px solid transparent;
-    font: 650 17px/1.2 var(--ui);
+    font: 700 17px/1.2 var(--ui);
     text-align: center;
     transition:
         background var(--motion-fast),
@@ -268,7 +308,7 @@ summary::-webkit-details-marker {
     min-height: var(--nav-h);
     color: var(--muted);
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
 }
 .nav-tab:hover {
     color: #fff;
@@ -290,7 +330,7 @@ summary::-webkit-details-marker {
     background: var(--action);
     color: var(--on-action);
     font-size: 11px;
-    font-weight: 750;
+    font-weight: 700;
     line-height: 18px;
     text-align: center;
 }
@@ -348,7 +388,7 @@ summary::-webkit-details-marker {
     padding: 120px 20px 16px;
 }
 .start h1 {
-    font: 700 clamp(36px, 10.6vw, 48px)/1.04 var(--head);
+    font: 800 clamp(36px, 10.6vw, 48px)/1.04 var(--head);
     letter-spacing: -0.015em;
     margin: 0 0 14px;
     text-wrap: balance;
@@ -490,7 +530,7 @@ summary::-webkit-details-marker {
     margin-bottom: 10px;
 }
 .card-title {
-    font: 700 clamp(30px, 8.8vw, 38px)/1.08 var(--head);
+    font: 800 clamp(30px, 8.8vw, 38px)/1.08 var(--head);
     letter-spacing: -0.01em;
     margin: 0 0 12px;
     text-wrap: balance;
@@ -578,7 +618,7 @@ summary::-webkit-details-marker {
     min-height: 56px;
     padding: 4px;
     font-size: 14px;
-    font-weight: 650;
+    font-weight: 700;
     filter: drop-shadow(0 1px 6px #000c);
 }
 .save-button.labelled.is-saved {
@@ -725,7 +765,7 @@ summary::-webkit-details-marker {
     gap: 10px;
     color: #fff;
     font-size: 16px;
-    font-weight: 650;
+    font-weight: 700;
 }
 .video-big-play svg {
     width: 80px;
@@ -793,7 +833,7 @@ summary::-webkit-details-marker {
     background: var(--paper);
 }
 .card-end h2 {
-    font: 700 30px/1.15 var(--head);
+    font: 800 30px/1.15 var(--head);
 }
 .card-end p {
     color: var(--on-photo-muted);
@@ -884,7 +924,7 @@ summary::-webkit-details-marker {
     padding: 22px 20px 0;
 }
 .quiz-sentence {
-    font: 700 clamp(30px, 8.6vw, 38px)/1.16 var(--head);
+    font: 800 clamp(30px, 8.6vw, 38px)/1.16 var(--head);
     letter-spacing: -0.01em;
     margin: 2px 0 20px;
     text-wrap: pretty;
@@ -993,11 +1033,11 @@ mark.answer {
 }
 .closeness-label {
     font-size: 16px;
-    font-weight: 650;
+    font-weight: 700;
     margin: 0 0 8px;
 }
 .heat-word {
-    font-weight: 750;
+    font-weight: 700;
     color: var(--heat);
 }
 .guesses {
@@ -1066,7 +1106,7 @@ mark.answer {
     min-height: 44px;
     color: var(--action);
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 700;
 }
 .explain summary:after {
     content: "";
@@ -1119,7 +1159,7 @@ mark.answer {
     font-size: 18px;
 }
 .quiz-options b {
-    font-weight: 650;
+    font-weight: 700;
 }
 .quiz-options small {
     display: block;
@@ -1196,7 +1236,7 @@ mark.answer {
 }
 .answers h1,
 .saved h1 {
-    font: 700 clamp(32px, 9vw, 40px)/1.1 var(--head);
+    font: 800 clamp(32px, 9vw, 40px)/1.1 var(--head);
     margin: 0 0 8px;
     text-wrap: balance;
 }
@@ -1204,7 +1244,7 @@ mark.answer {
     font-size: 19px;
 }
 .answers-score strong {
-    font: 700 44px/1 var(--head);
+    font: 800 44px/1 var(--head);
     margin-right: 4px;
 }
 .answers-sum {
@@ -1243,7 +1283,7 @@ mark.answer {
 }
 .streak-stat dt {
     font-size: 12px;
-    font-weight: 650;
+    font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--muted);
@@ -1257,7 +1297,7 @@ mark.answer {
 .streak-stat b {
     display: inline-block;
     padding: 4px 0; /* as tall as the current streak's blue box, so the numbers line up */
-    font: 700 34px/1 var(--head);
+    font: 800 34px/1 var(--head);
     color: #fff;
     font-variant-numeric: tabular-nums;
     margin-right: 2px;
@@ -1299,14 +1339,14 @@ mark.answer {
 }
 .result-points {
     color: var(--color-success);
-    font-weight: 650;
+    font-weight: 700;
     text-align: right;
 }
 .result-points.zero {
     color: #ccc;
 }
 .result-sentence {
-    font: 600 18px/1.4 var(--head);
+    font: 800 18px/1.4 var(--head);
     margin: 0 0 6px;
 }
 .result-sentence b {
@@ -1342,12 +1382,12 @@ mark.answer {
     display: block;
     color: var(--action);
     font-size: 14px;
-    font-weight: 650;
+    font-weight: 700;
 }
 .result-story strong {
     display: block;
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.3;
 }
 .result-story > svg {
@@ -1440,7 +1480,7 @@ mark.answer {
 }
 .saved-link strong {
     display: block;
-    font: 600 17px/1.3 var(--head);
+    font: 800 17px/1.3 var(--head);
 }
 .saved-link:hover strong {
     text-decoration: underline;
@@ -1463,7 +1503,7 @@ mark.answer {
     color: var(--action);
 }
 .empty h2 {
-    font: 700 24px/1.2 var(--head);
+    font: 800 24px/1.2 var(--head);
 }
 .empty p {
     color: #ccc;
@@ -1544,7 +1584,7 @@ mark.answer {
 .quiz-context-toggle {
     margin-left: auto;
     color: var(--action);
-    font-weight: 650;
+    font-weight: 700;
     white-space: nowrap;
     font-size: 0;
 }
@@ -1557,7 +1597,7 @@ mark.answer {
 }
 .quiz-context p {
     padding: 0 14px 14px;
-    font: 600 18px/1.4 var(--head);
+    font: 800 18px/1.4 var(--head);
 }
 .quiz-context mark {
     color: #fff;
@@ -1569,7 +1609,7 @@ mark.answer {
     padding: 24px 20px 4px;
 }
 .article-intro h1 {
-    font: 700 clamp(32px, 8.6vw, 44px)/1.1 var(--head);
+    font: 800 clamp(32px, 8.6vw, 44px)/1.1 var(--head);
     letter-spacing: -0.01em;
     margin: 0 0 14px;
     text-wrap: balance;
@@ -1593,6 +1633,7 @@ mark.answer {
     margin-bottom: 6px;
 }
 .short-points {
+    font-family: var(--head);
     font-size: 18px;
     gap: 8px;
 }
@@ -1607,10 +1648,9 @@ mark.answer {
     text-decoration: underline;
     text-underline-offset: 3px;
 }
+/* Article text is Acta Regular, as in the paper. */
 .article-lead {
-    font-size: 19px;
-    line-height: 1.5;
-    font-weight: 500;
+    font: 400 20px/1.5 var(--head);
     margin: 16px 20px 22px;
 }
 figure.article-hero {
@@ -1656,9 +1696,10 @@ figure.article-hero {
     margin: 24px 0 32px;
 }
 .article-body h2 {
-    font: 700 22px/1.3 var(--head);
+    font: 800 22px/1.3 var(--head);
 }
 .summary-text {
+    font-family: var(--head);
     font-size: 18px;
     line-height: 1.6;
     color: #ddd;
@@ -1694,7 +1735,8 @@ figure.article-hero {
 }
 .adressa-summary .summary-list {
     margin: 0 0 16px;
-    font-size: 16px;
+    font-family: var(--head);
+    font-size: 17px;
 }
 .summary-disclosure,
 .summary-source {
@@ -1719,16 +1761,18 @@ figure.article-hero {
     margin-top: 32px !important;
 }
 .article-text p {
+    font-family: var(--head);
     font-size: 18px;
     line-height: 1.7;
     margin: 0 0 18px;
 }
 .article-text h3 {
-    font: 700 22px/1.3 var(--head);
+    font: 800 22px/1.3 var(--head);
     margin: 32px 0 12px;
 }
 .article-text .bullet-list {
-    font-size: 17px;
+    font-family: var(--head);
+    font-size: 18px;
     margin: 0 0 18px;
 }
 .not-imported p {
@@ -1825,7 +1869,7 @@ figure.article-hero {
     background: var(--action);
     color: var(--on-action);
     font-size: 18px;
-    font-weight: 650;
+    font-weight: 700;
 }
 .quiz-return button:hover {
     background: var(--action-hover);
@@ -1855,7 +1899,7 @@ dialog.sheet {
     margin-bottom: 14px;
 }
 .modal-head h2 {
-    font: 700 24px/1.2 var(--head);
+    font: 800 24px/1.2 var(--head);
 }
 .modal-body p {
     color: #ccc;
@@ -1898,7 +1942,7 @@ dialog.sheet {
     background: var(--action);
     border-color: var(--action);
     color: var(--on-action);
-    font-weight: 650;
+    font-weight: 700;
 }
 .toast {
     position: fixed;
